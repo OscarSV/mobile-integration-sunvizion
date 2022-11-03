@@ -37,9 +37,11 @@ class MainActivity : AppCompatActivity() {
         setupArcGisApiKey()
         observe()
         setupMap()
-        addGraphics()
+        /*addGraphics()
         performReverseGeocoding()
-        setupView()
+        setupView()*/
+
+        viewModel.setupFeatureLayer()
     }
 
     override fun onResume() {
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupMap() {
-        val map = ArcGISMap(BasemapStyle.ARCGIS_STREETS)
+        val map = ArcGISMap(BasemapStyle.ARCGIS_TOPOGRAPHIC)
 
         arcGisMapView.map = map
         arcGisMapView.setViewpoint(Viewpoint(viewModel.homePoint.latitude, viewModel.homePoint.longitude, 72000.0))

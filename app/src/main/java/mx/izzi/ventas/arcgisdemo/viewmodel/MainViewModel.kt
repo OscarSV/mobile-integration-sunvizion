@@ -42,8 +42,8 @@ class MainViewModel: ViewModel() {
     private val _serviceFeatureTableReady = MutableLiveData<Event<ServiceFeatureTable>>()
     val serviceFeatureTableReady: LiveData<Event<ServiceFeatureTable>> = _serviceFeatureTableReady
 
-    private val _featureLayerReady = MutableLiveData<Event<kotlin.Unit>>()
-    val featureLayerReady: LiveData<Event<kotlin.Unit>> = _featureLayerReady
+    private val _featureLayerReady = MutableLiveData<Event<Unit>>()
+    val featureLayerReady: LiveData<Event<Unit>> = _featureLayerReady
 
     private val _locatorTaskReady = MutableLiveData<Event<Unit>>()
     val locatorTaskReady: LiveData<Event<Unit>> = _locatorTaskReady
@@ -77,9 +77,9 @@ class MainViewModel: ViewModel() {
     lateinit var featureLayer: FeatureLayer
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        /*viewModelScope.launch(Dispatchers.IO) {
             setupFeatureLayer()
-        }
+        }*/
         viewModelScope.launch(Dispatchers.IO) {
             locatorTask = LocatorTask("https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer")
             _locatorTaskReady.postValue(Event(Unit))
@@ -152,8 +152,9 @@ class MainViewModel: ViewModel() {
         }
     }
 
-    private fun setupFeatureLayer() {
-        serviceFeatureTable = ServiceFeatureTable("https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/USA_Daytime_Population_2016/FeatureServer/0")
+    fun setupFeatureLayer() {
+        //serviceFeatureTable = ServiceFeatureTable("https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/USA_Daytime_Population_2016/FeatureServer/0")
+        serviceFeatureTable = ServiceFeatureTable("https://gdv-p.sunvizion.izzi.mx:6443/arcgis/rest/services/GDV/GDV_General_layers/FeatureServer/15")
 
         val lineSymbol = SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, Color.BLACK, 1.0f)
         val fillSymbol = SimpleFillSymbol(SimpleFillSymbol.Style.SOLID, Color.YELLOW, lineSymbol)
@@ -164,7 +165,7 @@ class MainViewModel: ViewModel() {
             maxScale = 10000.0
         }
 
-        _featureLayerReady.postValue(Event(kotlin.Unit))
+        _featureLayerReady.postValue(Event(Unit))
     }
 
     fun performSearch(textToSearch: String) {
