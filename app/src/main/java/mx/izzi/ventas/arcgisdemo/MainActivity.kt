@@ -52,11 +52,7 @@ class MainActivity : AppCompatActivity() {
         serviceFeatureTable.addDoneLoadingListener {
             val lineSymbol = SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, Color.BLACK, 1.0f)
             val fillSymbol = SimpleFillSymbol(SimpleFillSymbol.Style.SOLID, Color.YELLOW, lineSymbol)
-            val featureLayer = FeatureLayer(serviceFeatureTable).apply {
-                renderer = SimpleRenderer(fillSymbol)
-                opacity = 0.8f
-                maxScale = 10000.0
-            }
+            val featureLayer = FeatureLayer(serviceFeatureTable)
 
             val layerAdded = map.operationalLayers?.add(featureLayer) ?: false
             if (layerAdded) {
