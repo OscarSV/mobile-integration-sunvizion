@@ -25,7 +25,6 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var arcGisMapView: MapView
@@ -78,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                     layerViewStateChangedEvent.error?.let { error ->
                         val message = error.cause?.toString() ?: error.message
                         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                        Log.i(MainActivity::class.java.simpleName, message.joinToString(", "))
                     }
                     displayViewStateText(layerViewStatus)
                 }
