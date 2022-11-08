@@ -154,7 +154,8 @@ class MainViewModel: ViewModel() {
 
     fun setupFeatureLayer() {
         //serviceFeatureTable = ServiceFeatureTable("https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/USA_Daytime_Population_2016/FeatureServer/0")
-        serviceFeatureTable = ServiceFeatureTable("https://gdv-p.sunvizion.izzi.mx:6443/arcgis/rest/services/GDV/GDV_General_layers/FeatureServer/15")
+        serviceFeatureTable = ServiceFeatureTable("https://gis-p.sunvizion.izzi.mx:6443/arcgis/rest/services/prod/Inventory/FeatureServer/8")
+        serviceFeatureTable.loadAsync()
 
         val lineSymbol = SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, Color.BLACK, 1.0f)
         val fillSymbol = SimpleFillSymbol(SimpleFillSymbol.Style.SOLID, Color.YELLOW, lineSymbol)
