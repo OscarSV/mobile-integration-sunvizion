@@ -1,14 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
+        agp_plugin_version = '7.2.2'
         navigation_version = '2.5.2'
-        activity_version = '1.5.1'
+        activity_version = '1.6.0'
         fragment_version = '1.5.3'
         lifecycle_version = '2.5.1'
         arch_version = '2.1.0'
         arcgis_version = '100.15.0'
     }
     dependencies {
+        classpath "com.android.tools.build:gradle:$agp_plugin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
     }
 }
